@@ -10,6 +10,20 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d_except.h" />
+    <ClInclude Include="d_matrix.h" />
+    <ClInclude Include="grid.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="SearchSort.h" />
+    <ClInclude Include="wordList.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="grid.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SearchSort.cpp" />
+    <ClCompile Include="wordList.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4073AB5A-8E5D-49EF-B6B8-5A4A1A463E31}</ProjectGuid>
     <RootNamespace>Project2</RootNamespace>
@@ -63,8 +77,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

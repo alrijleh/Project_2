@@ -25,8 +25,8 @@ public:
 	~grid();
 
 	grid(string fileName);
-	int getRows;
-	int getColumns;
+	int getRows();
+	int getColumns();
 
 	char getChar(int i, int j);
 };
