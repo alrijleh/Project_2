@@ -14,3 +14,11 @@ using namespace std;
 template<typename T> void quickSort(vector<T> vector, int left, int right);
 template<typename T> int partition(vector<T> vector, int left, int right);
 template<typename T> void swap(T a, T b);
+
+//mergeSort
+template <typename T> void mergeSort(vector<T> vector, int p, int r);
+template <typename T> void merge(vector <T> vector, int p, int q, int r);
+
+//insertionSort
+template<typename T> void insertionSort(vector<T> vector);
+
