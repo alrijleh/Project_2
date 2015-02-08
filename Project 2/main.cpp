@@ -141,9 +141,9 @@ vector<string> findMatches(wordList wordList, grid grid)
 	vector<string> match;
 
 	//Go through each word in wordList
-	for (int i = 0; i < wordList.words.size(); i++)
+	for (int i = 0; i < wordList.getWords().size(); i++)
 	{
-		string dictWord = wordList.words[i];
+		string dictWord = wordList.getWords()[i];
 		if (dictWord.length() > 4)
 		{
 			//Compare dictionary word to grid word

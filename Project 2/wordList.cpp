@@ -1,10 +1,8 @@
 #include "wordList.h"
 
-
 wordList::wordList()
 {
 }
-
 
 wordList::~wordList()
 {
@@ -32,17 +30,40 @@ wordList::wordList(string fileName)
 	fin.close();
 }
 
-void insertionSort()
-{}
+void wordList::setWords(vector<string> newWords)
+{
+	words = newWords;
+}
 
-void quickSort()
-{}
+vector<string> wordList::getWords()
+{
+	return words;
+}
 
-void mergeSort()
-{}
+void wordList::insertionSort()
+{
+	SearchSort::insertionSort(words);
+}
 
-void binarySort()
-{}
+void wordList::quickSort()
+{
+	SearchSort::quickSort(words);
+}
+
+void wordList::mergeSort()
+{
+	SearchSort::mergeSort(words);
+}
+
+int wordList::binarySearch(string item) const
+{
+	return SearchSort::binarySearch(words, item);
+}
+
+int wordList::linearSearch(string item) const
+{
+	return SearchSort::linearSearch(words, item);
+}
 
 ostream &operator<<(ostream &ostream, const wordList &wordList)
 {
