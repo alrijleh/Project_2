@@ -1,7 +1,5 @@
 #include "main.h"
-#include "wordList.h"
-#include "SearchSort.h"
-#include "grid.h"
+using namespace std;
 
 void main()
 {
