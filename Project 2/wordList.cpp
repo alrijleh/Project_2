@@ -10,7 +10,7 @@ wordList::~wordList()
 {
 }
 
-void wordList::readWords(string fileName)
+wordList::wordList(string fileName)
 {
 	string x;
 	
@@ -29,7 +29,6 @@ void wordList::readWords(string fileName)
 		fin >> x;
 		words.push_back(x);
 	}
-
 	fin.close();
 }
 
