@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SearchSort.cpp" />
     <ClCompile Include="wordList.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
