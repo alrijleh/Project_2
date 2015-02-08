@@ -10,7 +10,7 @@ wordList::~wordList()
 {
 }
 
-void wordList::readWords(string fileName)
+wordList::wordList(string fileName)
 {
 	string x;
 	

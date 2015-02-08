@@ -57,3 +57,11 @@ int grid::getColumns()
 {
 	return columns;
 }
+
+//Get the character in the matrix
+char grid::getChar(int i, int j)
+{
+	char c = matrix[i][j];
+	return c;
+}
+

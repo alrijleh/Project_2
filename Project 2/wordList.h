@@ -14,13 +14,14 @@ using namespace std;
 class wordList
 {
 private:
-	vector<string> words;
 
 public:
 	wordList();
 	~wordList();
+	
+	vector<string> words;
 
-	void readWords(string fileName);
+	wordList(string fileName);
 
 	void insertionSort();
 	void quickSort();
