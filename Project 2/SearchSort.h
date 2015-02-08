@@ -49,7 +49,7 @@ template<typename T> int binarySearch(const vector<T> &A, const T item)
 //sorting functions
 template<typename T> void quickSort(vector<T> &A)
 {
-	SearchSort::quickSort(A, 0, A.size() );
+	SearchSort::quickSort(A, 0, A.size() -1);
 }
 template<typename T> void mergeSort(vector<T> &A)
 {
@@ -91,19 +91,31 @@ namespace SearchSort
 	template<typename T>
 	int partition(vector<T>& A, int low, int high)
 	{
-		int i = low - 1;
+		//choose leftmost item as pivot
+		int pivot = low;
+		int left = low + 1, right = high;
 
-		for (int j = low; j < high; j++)
+		while (left <= right) //until the left and right iterators overlap
 		{
-			if (A[j] <= A[low])
+			while ( A[right] > A[pivot] )
 			{
-				i++;
-				swap(A[i], A[j]);
+				right--;
 			}
-
+			while ( A[left] < A[pivot] )
+			{
+				left++;
+			}
+			if (left <= right)
+			{
+				swap(A[left], A[right]);
+				left++; right--;
+			}
+			swap(A[left], A[right]);
 		}
-		swap(A[i], A[low]);
-		return i + 1;
+
+		swap( A[left], A[right] );  //undo extra swap
+		swap( A[pivot], A[right] ); //put pivot in center
+		return right;               //return new pivot location
 	}
 
 	//mergeSort - implementation
@@ -125,6 +137,7 @@ namespace SearchSort
 	{
 
 	}
+
 }
 
 //Operator overloads
