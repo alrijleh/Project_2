@@ -29,4 +29,6 @@ public:
 	int getColumns();
 
 	char getChar(int i, int j);
+
+	friend ostream &operator<<(ostream &ostream, Grid grid);
 };

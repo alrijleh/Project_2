@@ -273,6 +273,7 @@ void search(int)
 	//open grid file and crate grid
 	cout << "Opening input file..." << endl;
 	Grid grid(filename);
+	if (grid.getColumns() <= 80) cout << grid;
 
 	//open word list and crate dictionary
 	cout << "Opening dictionary..." << endl;

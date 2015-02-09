@@ -30,14 +30,6 @@ Grid::Grid(string fileName)
 			}
 		}
 	}
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
 	fin.close();
 }
 
@@ -58,3 +50,16 @@ char Grid::getChar(int i, int j)
 	return c;
 }
 
+//Operator overloads
+ostream &operator<<(ostream &ostream, Grid grid)
+{
+	for (int i = 0; i < grid.rows; i++)
+	{
+		for (int j = 0; j < grid.columns; j++)
+		{
+			cout << grid.matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	return ostream;
+}
