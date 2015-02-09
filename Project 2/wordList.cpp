@@ -10,7 +10,7 @@ wordList::~wordList()
 
 wordList::wordList(string fileName)
 {
-	string x;
+	string word;
 	
 	ifstream fin;
 	fin.open(fileName.c_str());
@@ -22,10 +22,10 @@ wordList::wordList(string fileName)
 	}
 	
 	//Setting dictionary words vector
-	while (!fin.eof())
+	while ( !fin.eof() )
 	{
-		fin >> x;
-		words.push_back(x);
+		fin >> word;
+		if (word.length() >= 5) words.push_back(word); //ingore words that are too short
 	}
 	fin.close();
 }
