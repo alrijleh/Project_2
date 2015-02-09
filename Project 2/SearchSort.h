@@ -34,7 +34,10 @@ namespace SearchSort
 	}
 	template<typename T> int binarySearch(const vector<T> &A, const T item)
 	{
-		int low = 0;
+		return binarySearch(A, item, 0);
+	}
+	template<typename T> int binarySearch(const vector<T> &A, const T item, const int low)
+	{
 		int high = A.size();
 
 		while (low <= high)
