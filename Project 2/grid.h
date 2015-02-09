@@ -13,7 +13,7 @@ Fouad Al-Rijleh, Rachel Rudolph
 
 using namespace std;
 
-class grid
+class Grid
 {
 private:
 	int rows;
@@ -21,12 +21,14 @@ private:
 	matrix<char> matrix;
 
 public:
-	grid();
-	~grid();
+	Grid();
+	Grid(string fileName);
+	~Grid();
 
-	grid(string fileName);
-	int getRows();
-	int getColumns();
+	int getRows() const;
+	int getColumns() const;
 
-	char getChar(int i, int j);
+	char getChar(int i, int j) const;
+
+	friend ostream &operator<<(ostream &ostream, const Grid grid);
 };

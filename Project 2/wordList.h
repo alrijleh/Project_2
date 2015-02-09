@@ -5,6 +5,8 @@ Fouad Al-Rijleh, Rachel Rudolph
 */
 #pragma once
 #include "SearchSort.h"
+#include "d_except.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -24,13 +26,16 @@ public:
 	~wordList();
 
 	void setWords(vector<string> newWords);
-	vector<string> getWords();
+	vector<string> getWords() const;
 
 	void insertionSort();
 	void quickSort();
 	void mergeSort();
-	int binarySearch(string item) const;
-	int linearSearch(string item) const;
+	int binarySearch(const string &item) const;
+	int binarySearch(const string &item, int low) const;
+	int linearSearch(const string &item) const;
+
+	bool isSorted() const;
 
 	friend ostream &operator<<(ostream &ostream, const wordList &wordList);
 };

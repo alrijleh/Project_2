@@ -1,28 +1,22 @@
 #include "grid.h"
 
 
-grid::grid()
+Grid::Grid(){}
+
+Grid::~Grid(){}
+
+Grid::Grid(string fileName)
 {
-}
-
-
-grid::~grid()
-{
-}
-
-
-grid::grid(string fileName)
-{
-	//Read the grid file
+	//Read the Grid file
 	ifstream fin;
 	fin.open(fileName.c_str());
 
 	if (!fin)
 	{
-		cout << "Could not read grid file." << endl;
+		throw fileOpenError(fileName);
 	}
 
-	// Read in the first two numbers of file and use for grid size
+	// Read in the first two numbers of file and use for Grid size
 	fin >> rows >> columns;
 	matrix.resize(rows, columns);
 
@@ -36,31 +30,36 @@ grid::grid(string fileName)
 			}
 		}
 	}
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < columns; j++)
-		{
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
 	fin.close();
 }
 
-int grid::getRows()
+int Grid::getRows() const
 {
 	return rows;
 }
 
-int grid::getColumns()
+int Grid::getColumns() const
 {
 	return columns;
 }
 
 //Get the character in the matrix
-char grid::getChar(int i, int j)
+char Grid::getChar(int i, int j) const
 {
 	char c = matrix[i][j];
 	return c;
 }
 
+//Operator overloads
+ostream &operator<<(ostream &ostream, Grid grid)
+{
+	for (int i = 0; i < grid.rows; i++)
+	{
+		for (int j = 0; j < grid.columns; j++)
+		{
+			cout << grid.matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	return ostream;
+}
