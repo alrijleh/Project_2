@@ -1,138 +1,202 @@
 #include "main.h"
 
-vector<string> getCandidateString(grid g)
+vector<string> getCandidateString(grid grid)
 {
-	vector<string> gridList;
+	vector<string> wordList;
 	string word;
+	int wrapColumn;
+	int wrapRow;
 
-	for (int i = 0; i < g.getRows(); i++)
+	for (int baseRow = 0; baseRow < grid.getRows(); baseRow++)
 	{
-		for (int j = 0; j < g.getColumns(); j++)
+		for (int baseColumn = 0; baseColumn < 1; baseColumn++)
 		{
-			int j1 = j, i1 = i;
-			word = g.getChar(i, j);
+			
+			////Case 1: Right
+			//wrapColumn = 0;
+			//word.clear();
+			//for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++) 
+			//{
+			//	if (baseColumn + charOffset > grid.getColumns() - 1) //If it wraps
+			//	{
+			//		word += grid.getChar(baseRow, wrapColumn);
+			//		wrapColumn++;
+			//	}
+			//	else //Does not wrap
+			//	{
+			//		word += grid.getChar(baseRow, baseColumn + charOffset);
+			//	}
+			//	if (charOffset > 5) //Keeps greater than or equal to 5 characters
+			//		wordList.push_back(word); //Puts new word into wordList vector
+			//}
 
-			//Case 1: Right
-			for (int a = 0; a < g.getColumns(); a++)
+			////Case 2: Left
+			//wrapColumn = grid.getColumns() - 1;
+			//word.clear();
+			//for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++)
+			//{
+			//	if (baseColumn - charOffset < 0) //If it wraps
+			//	{
+			//		word += grid.getChar(baseRow, wrapColumn);
+			//		wrapColumn--;
+			//	}
+			//	else //Does not wrap
+			//	{
+			//		word += grid.getChar(baseRow, baseColumn - charOffset);
+			//	}
+			//	if (charOffset > 5) //Keeps greater than or equal to 5 characters
+			//		wordList.push_back(word); //Puts new word into wordList vector
+			//}
+
+			////Case 3: Up
+			//wrapRow = 0;
+			//word.clear();
+			//for (int charOffset = 0; charOffset < grid.getRows(); charOffset++) 
+			//{
+			//	if (baseRow + charOffset > grid.getRows() - 1) //If it wraps
+			//	{
+			//		word += grid.getChar(wrapRow, baseColumn);
+			//		wrapRow++;
+			//	}
+			//	else //Does not wrap
+			//	{
+			//		word += grid.getChar(baseRow + charOffset, baseColumn);
+			//	}
+			//	if (charOffset > 4) //Keeps greater than or equal to 5 characters
+			//		wordList.push_back(word); //Puts new word into wordList vector
+			//}
+			
+			//Case 4: Down
+			wrapRow = grid.getRows() - 1;
+			word.clear();
+			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
 			{
-				if (a >= 5)
-					gridList.push_back(word);
-
-				j1 = j++;
-				if (j1 == g.getColumns() - 1)
-					j = 0;
-				word += g.getChar(i, j);
+				if (baseRow - charOffset < 0) //If it wraps
+				{
+					word += grid.getChar(wrapRow, baseColumn);
+					cout << wrapRow << " " << baseColumn << endl;
+					wrapRow--;
+					cout << "wraps";
+				}
+				else //Does not wrap
+				{
+					word += grid.getChar(baseRow - charOffset, baseColumn);
+					cout << endl << baseRow - charOffset << " " << baseColumn << endl;
+					cout << "does not wrap";
+				}
+				if (charOffset > 14) //Keeps greater than or equal to 5 characters
+					wordList.push_back(word); //Puts new word into wordList vector
 			}
 
-					//Case 2: Left
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getColumns(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 2: Left
+			//word = grid.getChar(row, column);
+			//for (int charOffset = 0; charOffset < grid.getColumns(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						j1 = j--;
-						if (j1 == 0)
-							j = g.getColumns() - 1;
-						word += g.getChar(i, j);
-						//break;
-					}
+			//	baseColumn = column--;
+			//	if (baseColumn == 0)
+			//		column = grid.getColumns() - 1;
+			//	word += grid.getChar(row, column);
+			//	//break;
+			//}
 
-					//Case 3: Down
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getRows(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 3: Down
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getRows(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i++;
-						if (i1 == g.getRows() - 1)
-							i = 0;
-						word += g.getChar(i, j);
-						//break;
-					}
+			//	baseRow = row++;
+			//	if (baseRow == grid.getRows() - 1)
+			//		row = 0;
+			//	word += grid.getChar(row, column);
+			//	//break;
+			//}
 
-					//Case 4: Up
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getRows(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 4: Up
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getRows(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i--;
-						if (i1 == 0)
-							i = g.getRows() - 1;
-						word += g.getChar(i, j);
-					}
+			//	baseRow = row--;
+			//	if (baseRow == 0)
+			//		row = grid.getRows() - 1;
+			//	word += grid.getChar(row, column);
+			//}
 
-					//Case 5: Down Right
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getColumns(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 5: Down Right
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getColumns(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i++;
-						if (i1 == g.getRows() - 1)
-							i = 0;
-						j1 = j++;
-						if (j1 == g.getColumns() - 1)
-							j = 0;
-						word += g.getChar(i, j);
-						//break;
-					}
+			//	baseRow = row++;
+			//	if (baseRow == grid.getRows() - 1)
+			//		row = 0;
+			//	baseColumn = column++;
+			//	if (baseColumn == grid.getColumns() - 1)
+			//		column = 0;
+			//	word += grid.getChar(row, column);
+			//	//break;
+			//}
 
-					//Case 6: Down Left
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getColumns(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 6: Down Left
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getColumns(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i++;
-						if (i1 == g.getRows() - 1)
-							i = 0;
-						j1 = j--;
-						if (j1 == 0)
-							j = g.getColumns() - 1;
-						word += g.getChar(i, j);
-					}
+			//	baseRow = row++;
+			//	if (baseRow == grid.getRows() - 1)
+			//		row = 0;
+			//	baseColumn = column--;
+			//	if (baseColumn == 0)
+			//		column = grid.getColumns() - 1;
+			//	word += grid.getChar(row, column);
+			//}
 
-					//Case 7: Up Right
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getColumns(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 7: Up Right
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getColumns(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i--;
-						if (i1 == 0)
-							i = g.getRows() - 1;
-						j1 = j++;
-						if (j1 == g.getColumns() - 1)
-							j = 0;
-						word += g.getChar(i, j);
-					}
+			//	baseRow = row--;
+			//	if (baseRow == 0)
+			//		row = grid.getRows() - 1;
+			//	baseColumn = column++;
+			//	if (baseColumn == grid.getColumns() - 1)
+			//		column = 0;
+			//	word += grid.getChar(row, column);
+			//}
 
-					//Case 8: Up Left
-					word = g.getChar(i, j);
-					for (int a = 0; a < g.getColumns(); a++)
-					{
-						if (a >= 5)
-							gridList.push_back(word);
+			////Case 8: Up Left
+			//word = grid.getChar(row, column);
+			//for (int a = 0; a < grid.getColumns(); a++)
+			//{
+			//	if (a >= 5)
+			//		wordList.push_back(word);
 
-						i1 = i--;
-						if (i1 == 0)
-							i = g.getRows() - 1;
-						j1 = j--;
-						if (j1 == 0)
-							j = g.getColumns() - 1;
-						word += g.getChar(i, j);
-					}
+			//	baseRow = row--;
+			//	if (baseRow == 0)
+			//		row = grid.getRows() - 1;
+			//	baseColumn = column--;
+			//	if (baseColumn == 0)
+			//		column = grid.getColumns() - 1;
+			//	word += grid.getChar(row, column);
+			//}
 		}
 	}
 
-	return gridList;
+	return wordList;
 }
 
 vector<string> findMatches(wordList wordList, grid grid)
@@ -147,9 +211,9 @@ vector<string> findMatches(wordList wordList, grid grid)
 		if (dictWord.length() > 4)
 		{
 			//Compare dictionary word to grid word
-			for (int j = 0; j < gridList.size(); j++)
+			for (int column = 0; column < gridList.size(); column++)
 			{
-				string gridWord = gridList[j];
+				string gridWord = gridList[column];
 				if (gridWord.compare(dictWord) == 0)
 				{
 					//If same word put in match
@@ -166,9 +230,12 @@ vector<string> findMatches(wordList wordList, grid grid)
 void main()
 {
 	wordList words = wordList("wordlist.txt");
-	
+
 	grid gridList("input15");
-	getCandidateString(gridList);
+	//getCandidateString(gridList);
+	//findMatches(words, gridList);
+
+	cout << getCandidateString(gridList);
 
 	system("pause");
 }
