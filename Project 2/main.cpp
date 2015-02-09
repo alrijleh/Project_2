@@ -258,7 +258,7 @@ vector<string> findMatches(wordList wordList, Grid grid)
 	return matchList;
 }
 
-void search(int)
+void search(int sortMethod)
 {
 	string filename;
 	clock_t time, baseTime;
@@ -282,7 +282,20 @@ void search(int)
 	//sort the dictionary
 	cout << "Sorting dictionary..." << endl;
 	time = clock();
-	dictionary.quickSort();
+	switch (sortMethod)
+	{
+	case INSERTIONSORT: dictionary.insertionSort();
+		break;
+	case MERGESORT: dictionary.mergeSort();
+		break;
+	case QUICKSORT: dictionary.quickSort();
+		break;
+	default:
+		throw rangeError("Use provided enums in main.h to choose sorting method");
+		break;
+	}
+
+
 	time = clock() - time;
 	cout << "CPU time to sort dictionary: " << time << endl;
 
@@ -305,19 +318,17 @@ void main()
 {
 	try
 	{
-		search(1);
+		search(QUICKSORT);
 	}
 	catch (fileOpenError &ex)
 	{
 		cout << "fileOpenError: " << ex.what() << endl;
 	}
+	catch (rangeError &ex)
+	{
+		cout << "rangeError: " << ex.what() << endl;
+	}
 
-	/*
-	wordList words = wordList("wordlist.txt");
-	grid gridList("input15");
-
-	findMatches(words, gridList); //calls getCandidateString()
-	*/
 
 	/*
 	vector<int> vec(500);
@@ -332,5 +343,3 @@ void main()
 	*/
 	system("pause");
 }
-
-

@@ -9,3 +9,5 @@
 #include <time.h>
 
 using namespace std;
+
+enum Sort { INSERTIONSORT, MERGESORT, QUICKSORT };
