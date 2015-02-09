@@ -1,11 +1,10 @@
 #include "main.h"
 
-vector<string> getCandidateString(Grid grid)
+vector<string> getCandidateString(const Grid &grid)
 {
 	vector<string> wordList;
 	string word;
-	int wrapColumn;
-	int wrapRow;
+	int wrapColumn, wrapRow;
 
 	for (int baseRow = 0; baseRow < grid.getRows(); baseRow++)
 	{
@@ -228,7 +227,7 @@ vector<string> getCandidateString(Grid grid)
 	return wordList;
 }
 
-vector<string> findMatches(wordList wordList, Grid grid)
+vector<string> findMatches(const wordList &wordList, const Grid &grid)
 {
 	vector<string> candidateStrings;
 	vector<string> matchList;
@@ -258,7 +257,7 @@ vector<string> findMatches(wordList wordList, Grid grid)
 	return matchList;
 }
 
-void search(int sortMethod)
+void search(const int sortMethod)
 {
 	string filename;
 	clock_t time, baseTime;
@@ -294,8 +293,6 @@ void search(int sortMethod)
 		throw rangeError("Use provided enums in main.h to choose sorting method");
 		break;
 	}
-
-
 	time = clock() - time;
 	cout << "CPU time to sort dictionary: " << time << endl;
 

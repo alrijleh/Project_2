@@ -25,10 +25,10 @@ public:
 	Grid(string fileName);
 	~Grid();
 
-	int getRows();
-	int getColumns();
+	int getRows() const;
+	int getColumns() const;
 
-	char getChar(int i, int j);
+	char getChar(int i, int j) const;
 
-	friend ostream &operator<<(ostream &ostream, Grid grid);
+	friend ostream &operator<<(ostream &ostream, const Grid grid);
 };

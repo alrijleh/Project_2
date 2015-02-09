@@ -33,18 +33,18 @@ Grid::Grid(string fileName)
 	fin.close();
 }
 
-int Grid::getRows()
+int Grid::getRows() const
 {
 	return rows;
 }
 
-int Grid::getColumns()
+int Grid::getColumns() const
 {
 	return columns;
 }
 
 //Get the character in the matrix
-char Grid::getChar(int i, int j)
+char Grid::getChar(int i, int j) const
 {
 	char c = matrix[i][j];
 	return c;

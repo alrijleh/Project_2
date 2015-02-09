@@ -35,7 +35,7 @@ void wordList::setWords(vector<string> newWords)
 	words = newWords;
 }
 
-vector<string> wordList::getWords()
+vector<string> wordList::getWords() const
 {
 	return words;
 }
@@ -68,6 +68,11 @@ int wordList::binarySearch(const string &item, int low) const
 int wordList::linearSearch(const string &item) const
 {
 	return SearchSort::linearSearch(words, item);
+}
+
+bool wordList::isSorted() const
+{
+	return SearchSort::isSorted(words);
 }
 
 ostream &operator<<(ostream &ostream, const wordList &wordList)

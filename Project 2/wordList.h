@@ -26,7 +26,7 @@ public:
 	~wordList();
 
 	void setWords(vector<string> newWords);
-	vector<string> getWords();
+	vector<string> getWords() const;
 
 	void insertionSort();
 	void quickSort();
@@ -34,6 +34,8 @@ public:
 	int binarySearch(const string &item) const;
 	int binarySearch(const string &item, int low) const;
 	int linearSearch(const string &item) const;
+
+	bool isSorted() const;
 
 	friend ostream &operator<<(ostream &ostream, const wordList &wordList);
 };
