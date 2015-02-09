@@ -18,7 +18,7 @@ wordList::wordList(string fileName)
 	//Check if file exists
 	if (!fin)
 	{
-		cout << "Could not read dictionary file." << endl;
+		throw fileOpenError(fileName);
 	}
 	
 	//Setting dictionary words vector
@@ -55,12 +55,17 @@ void wordList::mergeSort()
 	SearchSort::mergeSort(words);
 }
 
-int wordList::binarySearch(string item) const
+int wordList::binarySearch(const string &item) const
 {
 	return SearchSort::binarySearch(words, item);
 }
 
-int wordList::linearSearch(string item) const
+int wordList::binarySearch(const string &item, int low) const
+{
+	return SearchSort::binarySearch(words, item, low);
+}
+
+int wordList::linearSearch(const string &item) const
 {
 	return SearchSort::linearSearch(words, item);
 }

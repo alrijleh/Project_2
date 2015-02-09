@@ -1,6 +1,6 @@
 #include "main.h"
 
-vector<string> getCandidateString(grid grid)
+vector<string> getCandidateString(Grid grid)
 {
 	vector<string> wordList;
 	string word;
@@ -228,34 +228,107 @@ vector<string> getCandidateString(grid grid)
 	return wordList;
 }
 
-vector<string> findMatches(wordList wordList, grid grid)
+vector<string> findMatches(wordList wordList, Grid grid)
 {
 	vector<string> candidateStrings;
 	vector<string> matchList;
-	int location;
+	int location, previous = 0;
+	clock_t time;
 
-	//By this point wordList has been sorted
-	candidateStrings= getCandidateString(grid);
-	//SearchSort::quickSort(candidateStrings)     QUICKSORT DOES NOT WORK YET
+	//find possible words from grid
+	cout << "Finding possible words..." << endl;
+	candidateStrings = getCandidateString(grid);
+
+	//sort list of possible words
+	cout << "Sorting possible word list..." << endl;
+	SearchSort::quickSort(candidateStrings);
 
 	//find matches and return index
+	cout << "Finding real words..." << endl;
 	for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
 	{
-		location = SearchSort::binarySearch(wordList.getWords(), candidateStrings[candidateIndex]);
-		if (location != -1) matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+		location = wordList.binarySearch(candidateStrings[candidateIndex], previous);
+		if (location != -1)
+		{
+			matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+			previous = location; //records the index of the last found word
+		}
 	}
 
 	return matchList;
 }
 
+void search(int)
+{
+	string filename;
+	clock_t time, baseTime;
+	vector<string> candidateWords, foundWords;
+
+	//get user input
+	cout << "Enter grid file: ";
+	cin >> filename;
+
+	baseTime = clock();
+
+	//open grid file and crate grid
+	cout << "Opening input file..." << endl;
+	Grid grid(filename);
+
+	//open word list and crate dictionary
+	cout << "Opening dictionary..." << endl;
+	wordList dictionary("wordlist.txt");
+
+	//sort the dictionary
+	cout << "Sorting dictionary..." << endl;
+	time = clock();
+	dictionary.quickSort();
+	time = clock() - time;
+	cout << "CPU time to sort dictionary: " << time << endl;
+
+	//find matches
+	cout << "Finding words..." << endl;
+	time = clock();
+	foundWords = findMatches(dictionary, grid);
+	time = clock() - time;
+	cout << "CPU time to find words: " << time << endl;
+
+	//display found words
+	cout << "Words found in grid:" << endl << endl;
+	cout << foundWords << endl << endl;
+
+	time = clock() - baseTime;
+	cout << "Total CPU time to complete entire operation: " << time << endl;
+}
+
 void main()
 {
+	try
+	{
+		search(1);
+	}
+	catch (fileOpenError &ex)
+	{
+		cout << "fileOpenError: " << ex.what() << endl;
+	}
 
+	/*
 	wordList words = wordList("wordlist.txt");
 	grid gridList("input15");
 
 	findMatches(words, gridList); //calls getCandidateString()
+	*/
 
+	/*
+	vector<int> vec(500);
+	for (int i = 0; i < vec.size(); i++)
+	{
+		vec[i] = rand() % 10000;
+	}
+	cout << vec << endl;
+	SearchSort::quickSort(vec);
+	cout << vec << endl;
+	cout << SearchSort::isSorted(vec);
+	*/
 	system("pause");
 }
 

@@ -1,28 +1,22 @@
 #include "grid.h"
 
 
-grid::grid()
+Grid::Grid(){}
+
+Grid::~Grid(){}
+
+Grid::Grid(string fileName)
 {
-}
-
-
-grid::~grid()
-{
-}
-
-
-grid::grid(string fileName)
-{
-	//Read the grid file
+	//Read the Grid file
 	ifstream fin;
 	fin.open(fileName.c_str());
 
 	if (!fin)
 	{
-		cout << "Could not read grid file." << endl;
+		throw fileOpenError(fileName);
 	}
 
-	// Read in the first two numbers of file and use for grid size
+	// Read in the first two numbers of file and use for Grid size
 	fin >> rows >> columns;
 	matrix.resize(rows, columns);
 
@@ -47,18 +41,18 @@ grid::grid(string fileName)
 	fin.close();
 }
 
-int grid::getRows()
+int Grid::getRows()
 {
 	return rows;
 }
 
-int grid::getColumns()
+int Grid::getColumns()
 {
 	return columns;
 }
 
 //Get the character in the matrix
-char grid::getChar(int i, int j)
+char Grid::getChar(int i, int j)
 {
 	char c = matrix[i][j];
 	return c;
