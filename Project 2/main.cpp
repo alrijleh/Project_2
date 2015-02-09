@@ -7,9 +7,9 @@ vector<string> getCandidateString(grid grid)
 	int wrapColumn;
 	int wrapRow;
 
-	for (int baseRow = 0; baseRow < grid.getRows(); baseRow++)
+	for (int baseRow = 0; baseRow < 4; baseRow++)
 	{
-		for (int baseColumn = 0; baseColumn < grid.getRows(); baseColumn++)
+		for (int baseColumn = 0; baseColumn < 4; baseColumn++)
 		{
 
 			////Case 1: Right
@@ -17,7 +17,7 @@ vector<string> getCandidateString(grid grid)
 			//word.clear();
 			//for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++) 
 			//{
-			//	if (baseColumn + charOffset > grid.getColumns() - 1) //If it wraps
+			//	if (baseColumn + charOffset > grid.getColumns() - 1) //If it wraps right
 			//	{
 			//		word += grid.getChar(baseRow, wrapColumn);
 			//		wrapColumn++;
@@ -84,44 +84,41 @@ vector<string> getCandidateString(grid grid)
 			//		wordList.push_back(word); //Puts new word into wordList vector
 			//}
 
-			//Case 5: Down Right
-			wrapColumn = 0;
-			wrapRow = 0;
-			word.clear();
 
-			for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++)
+			//Case 4: Down-Right
+			wrapRow = 0;
+			wrapColumn = 0;
+			word.clear();
+			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
 			{
-				//Check Right
-				if (baseColumn + charOffset > grid.getColumns() - 1)
+				//if wraps on down-right //crahes here?
+				if ((baseColumn + charOffset >= grid.getColumns()) && (baseRow + charOffset >= grid.getRows()))
 				{
-					word += grid.getChar(baseRow, wrapColumn);
+					word += grid.getChar(wrapRow, wrapColumn);
 					wrapColumn++;
-				}
-			
-				//Check Down
-				if (baseRow + charOffset > grid.getRows() - 1)
-				{
-					word += grid.getChar(wrapRow, baseColumn);
 					wrapRow++;
 				}
-				
-				//Check both wrap
-				if ((baseColumn + charOffset > grid.getColumns() - 1) && (baseRow + charOffset > grid.getRows() - 1))
+				//if wraps down
+				else if (baseRow + charOffset >= grid.getRows())
 				{
-					//word += grid.getChar(wrapRow, wrapColumn);
+					word += grid.getChar(wrapRow, baseColumn + charOffset);
 					wrapRow++;
+				}
+				//if wraps right
+				else if (baseColumn + charOffset >= grid.getColumns())
+				{
+					word += grid.getChar(baseRow + charOffset, wrapColumn);
 					wrapColumn++;
 				}
-				
-				//Check neither wrap
-				if (!((baseColumn + charOffset > grid.getColumns() - 1) || (baseRow + charOffset > grid.getRows() - 1)))
+				//if does not wrap
+				else if (!(baseColumn + charOffset >= grid.getColumns() ) && !(baseRow + charOffset >= grid.getRows() ))
 				{
 					word += grid.getChar(baseRow + charOffset, baseColumn + charOffset);
 				}
-				
-				if (word.size() >= 13)
-					wordList.push_back(word);
+				if (charOffset >= 14) //Keeps greater than or equal to 5 characters
+					wordList.push_back(word); //Puts new word into wordList vector
 			}
+
 
 			////Case 2: Left
 			//word = grid.getChar(row, column);
