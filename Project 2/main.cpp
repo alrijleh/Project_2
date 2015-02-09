@@ -5,18 +5,19 @@ vector<string> getCandidateString(const Grid &grid)
 	vector<string> wordList;
 	string word;
 	int wrapColumn, wrapRow;
+	const int maxRow = grid.getRows(), maxColumn = grid.getColumns();
 
-	for (int baseRow = 0; baseRow < grid.getRows(); baseRow++)
+	for (int baseRow = 0; baseRow < maxRow; baseRow++)
 	{
-		for (int baseColumn = 0; baseColumn < grid.getColumns(); baseColumn++)
+		for (int baseColumn = 0; baseColumn < maxColumn; baseColumn++)
 		{
 
 			//Case 1: Right
 			wrapColumn = 0;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++)
+			for (int charOffset = 0; charOffset < maxColumn; charOffset++)
 			{
-				if (baseColumn + charOffset > grid.getColumns() - 1) //If it wraps right
+				if (baseColumn + charOffset > maxColumn - 1) //If it wraps right
 				{
 					word += grid.getChar(baseRow, wrapColumn);
 					wrapColumn++;
@@ -30,9 +31,9 @@ vector<string> getCandidateString(const Grid &grid)
 			}
 
 			//Case 2: Left
-			wrapColumn = grid.getColumns() - 1;
+			wrapColumn = maxColumn - 1;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getColumns(); charOffset++)
+			for (int charOffset = 0; charOffset < maxColumn; charOffset++)
 			{
 				if (baseColumn - charOffset < 0) //If it wraps
 				{
@@ -50,9 +51,9 @@ vector<string> getCandidateString(const Grid &grid)
 			//Case 3: Down
 			wrapRow = 0;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
-				if (baseRow + charOffset > grid.getRows() - 1) //If it wraps
+				if (baseRow + charOffset > maxRow - 1) //If it wraps
 				{
 					word += grid.getChar(wrapRow, baseColumn);
 					wrapRow++;
@@ -66,9 +67,9 @@ vector<string> getCandidateString(const Grid &grid)
 			}
 
 			//Case 4: Up
-			wrapRow = grid.getRows() - 1;
+			wrapRow = maxRow - 1;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
 				if (baseRow - charOffset < 0) //If it wraps
 				{
@@ -88,29 +89,29 @@ vector<string> getCandidateString(const Grid &grid)
 			wrapRow = 0;
 			wrapColumn = 0;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
 				//if wraps on down-right //crahes here?
-				if ((baseColumn + charOffset >= grid.getColumns()) && (baseRow + charOffset >= grid.getRows()))
+				if ((baseColumn + charOffset >= maxColumn) && (baseRow + charOffset >= maxRow))
 				{
 					word += grid.getChar(wrapRow, wrapColumn);
 					wrapColumn++;
 					wrapRow++;
 				}
 				//if wraps down
-				else if (baseRow + charOffset >= grid.getRows())
+				else if (baseRow + charOffset >= maxRow)
 				{
 					word += grid.getChar(wrapRow, baseColumn + charOffset);
 					wrapRow++;
 				}
 				//if wraps right
-				else if (baseColumn + charOffset >= grid.getColumns())
+				else if (baseColumn + charOffset >= maxColumn)
 				{
 					word += grid.getChar(baseRow + charOffset, wrapColumn);
 					wrapColumn++;
 				}
 				//if does not wrap
-				else if (!(baseColumn + charOffset >= grid.getColumns()) && !(baseRow + charOffset >= grid.getRows()))
+				else if (!(baseColumn + charOffset >= maxColumn) && !(baseRow + charOffset >= maxRow))
 				{
 					word += grid.getChar(baseRow + charOffset, baseColumn + charOffset);
 				}
@@ -120,19 +121,19 @@ vector<string> getCandidateString(const Grid &grid)
 
 			//Case 6: Down-Left
 			wrapRow = 0;
-			wrapColumn = grid.getColumns() - 1;
+			wrapColumn = maxColumn - 1;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
 				//if wraps on down-right //crahes here?
-				if ((baseColumn - charOffset < 0) && (baseRow + charOffset >= grid.getRows()))
+				if ((baseColumn - charOffset < 0) && (baseRow + charOffset >= maxRow))
 				{
 					word += grid.getChar(wrapRow, wrapColumn);
 					wrapColumn--;
 					wrapRow++;
 				}
 				//if wraps down
-				else if (baseRow + charOffset >= grid.getRows())
+				else if (baseRow + charOffset >= maxRow)
 				{
 					word += grid.getChar(wrapRow, baseColumn - charOffset);
 					wrapRow++;
@@ -144,7 +145,7 @@ vector<string> getCandidateString(const Grid &grid)
 					wrapColumn--;
 				}
 				//if does not wrap
-				else if (!(baseColumn + charOffset < 0) && !(baseRow + charOffset >= grid.getRows()))
+				else if (!(baseColumn + charOffset < 0) && !(baseRow + charOffset >= maxRow))
 				{
 					word += grid.getChar(baseRow + charOffset, baseColumn - charOffset);
 				}
@@ -154,13 +155,13 @@ vector<string> getCandidateString(const Grid &grid)
 
 
 			//Case 7: Up-Right
-			wrapRow = grid.getRows() - 1;
+			wrapRow = maxRow - 1;
 			wrapColumn = 0;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
 				//if wraps on down-right
-				if ((baseColumn + charOffset >= grid.getColumns()) && (baseRow - charOffset < 0))
+				if ((baseColumn + charOffset >= maxColumn) && (baseRow - charOffset < 0))
 				{
 					word += grid.getChar(wrapRow, wrapColumn);
 					wrapColumn++;
@@ -173,13 +174,13 @@ vector<string> getCandidateString(const Grid &grid)
 					wrapRow--;
 				}
 				//if wraps right
-				else if (baseColumn + charOffset >= grid.getColumns())
+				else if (baseColumn + charOffset >= maxColumn)
 				{
 					word += grid.getChar(baseRow - charOffset, wrapColumn);
 					wrapColumn++;
 				}
 				//if does not wrap
-				else if (!(baseColumn + charOffset >= grid.getColumns()) && !(baseRow - charOffset < 0))
+				else if (!(baseColumn + charOffset >= maxColumn) && !(baseRow - charOffset < 0))
 				{
 					word += grid.getChar(baseRow - charOffset, baseColumn + charOffset);
 				}
@@ -188,10 +189,10 @@ vector<string> getCandidateString(const Grid &grid)
 
 			}
 			//Case 7: Up-Left
-			wrapRow = grid.getRows() - 1;
-			wrapColumn = grid.getColumns() - 1;
+			wrapRow = maxRow - 1;
+			wrapColumn = maxColumn - 1;
 			word.clear();
-			for (int charOffset = 0; charOffset < grid.getRows(); charOffset++)
+			for (int charOffset = 0; charOffset < maxRow; charOffset++)
 			{
 				//if wraps on up-left
 				if ((baseRow - charOffset < 0) && (baseColumn - charOffset < 0))
@@ -272,7 +273,7 @@ void search(const int sortMethod)
 	//open grid file and crate grid
 	cout << "Opening input file..." << endl;
 	Grid grid(filename);
-	if (grid.getColumns() <= 80) cout << grid;
+	if (grid.getColumns() <= 40) cout << grid;
 
 	//open word list and crate dictionary
 	cout << "Opening dictionary..." << endl;
