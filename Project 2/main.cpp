@@ -230,30 +230,22 @@ vector<string> getCandidateString(grid grid)
 
 vector<string> findMatches(wordList wordList, grid grid)
 {
-	vector<string> candidateStrings = getCandidateString(grid);
-	vector<string> match;
+	vector<string> candidateStrings;
+	vector<string> matchList;
+	int location;
 
-	//Go through each word in wordList
-	for (int i = 0; i < wordList.getWords().size(); i++)
+	//By this point wordList has been sorted
+	candidateStrings= getCandidateString(grid);
+	//SearchSort::quickSort(candidateStrings)     QUICKSORT DOES NOT WORK YET
+
+	//find matches and return index
+	for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
 	{
-		string dictWord = wordList.getWords()[i];
-		if (dictWord.length() > 4)
-		{
-			//Compare dictionary word to grid word
-			for (int column = 0; column < candidateStrings.size(); column++)
-			{
-				string gridWord = candidateStrings[column];
-				if (gridWord.compare(dictWord) == 0)
-				{
-					//If same word put in match
-					match.push_back(gridWord);
-					break;
-				}
-			}
-		}
+		location = SearchSort::binarySearch(wordList.getWords(), candidateStrings[candidateIndex]);
+		if (location != -1) matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
 	}
 
-	return match;
+	return matchList;
 }
 
 void main()
@@ -262,7 +254,7 @@ void main()
 	wordList words = wordList("wordlist.txt");
 	grid gridList("input15");
 
-	findMatches(words, gridList);
+	findMatches(words, gridList); //calls getCandidateString()
 
 	system("pause");
 }

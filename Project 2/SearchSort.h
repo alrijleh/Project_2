@@ -14,7 +14,7 @@ using namespace std;
 namespace SearchSort
 {
 	//vector functions
-	template<typename T> bool isSorted(vector<T> &A)
+	template<typename T> bool isSorted(const vector<T> &A)
 	{
 		for (int index = 0; index < A.size() - 1; index++)
 		{
