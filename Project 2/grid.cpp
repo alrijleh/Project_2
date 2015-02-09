@@ -44,7 +44,6 @@ grid::grid(string fileName)
 		}
 		cout << endl;
 	}
-	
 	fin.close();
 }
 
