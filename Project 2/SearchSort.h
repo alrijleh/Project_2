@@ -98,29 +98,18 @@ namespace SearchSort
 		{
 			//choose leftmost item as pivot
 			int pivot = low;
-			int left = low + 1, right = high;
 
-			while (left <= right) //until the left and right iterators overlap
+			while (low < high)
 			{
-				while (A[right] > A[pivot])
-				{
-					right--;
-				}
-				while (A[left] < A[pivot])
-				{
-					left++;
-				}
-				if (left <= right)
-				{
-					swap(A[left], A[right]);
-					left++; right--;
-				}
-				swap(A[left], A[right]);
+				while (A[low] <= A[pivot] && low < high)
+					low++;
+				while (A[high] > A[pivot])
+					high--;
+				if (low < high) swap(A[low], A[high]); //swap numbers to other side of pivot
 			}
 
-			swap(A[left], A[right]);  //undo extra swap
-			swap(A[pivot], A[right]); //put pivot in center
-			return right;               //return new pivot location
+			swap(A[pivot], A[high]); //put pivot into correct location
+			return  high; //return pivot location
 		}
 
 		//mergeSort - implementation
