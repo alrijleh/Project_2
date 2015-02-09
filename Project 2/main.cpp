@@ -251,10 +251,17 @@ vector<string> findMatches(wordList wordList, grid grid)
 void main()
 {
 
-	wordList words = wordList("wordlist.txt");
-	grid gridList("input15");
+	//wordList words = wordList("wordlist.txt");
+	//grid gridList("input15");
 
-	findMatches(words, gridList); //calls getCandidateString()
+	//words.mergeSort();
+
+	/*vector<string> test = {"washed","kibitzes","hoopskirt","nature","chancellorship","abasing","unglamorized","attentiveness","excision","marimba","caustic","abaters",
+		"flooding","bidders","abatises","stingily"};*/
+	vector<int> test = {3, 45, 23, 56, 7, 9, 21, 6, 4, 8};
+	SearchSort::mergeSort(test);
+
+	//findMatches(words, gridList); //calls getCandidateString()
 
 	system("pause");
 }

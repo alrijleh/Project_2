@@ -58,7 +58,7 @@ namespace SearchSort
 	}
 	template<typename T> void mergeSort(vector<T> &A)
 	{
-		Internal::mergeSort(A, 0, A.size());
+		Internal::mergeSort(A, 0, A.size()-1);
 	}
 	template<typename T> void insertionSort(vector<T> &A)
 	{
@@ -114,11 +114,12 @@ namespace SearchSort
 
 		//mergeSort - implementation
 		template<typename T>
-		void mergeSort(vector<T> &A, int low, int high)
+		void mergeSort(vector<T>& A, int low, int high)
 		{
+			int mid;
 			if (low < high)
 			{
-				int mid = (low + high) / 2;
+				mid = (low + high) / 2;
 				mergeSort(A, low, mid);
 				mergeSort(A, mid + 1, high);
 				merge(A, low, mid, high);
@@ -129,8 +130,48 @@ namespace SearchSort
 		template<typename T>
 		void merge(vector<T> &A, int low, int mid, int high)
 		{
+			int i, j, k;
+			vector<T> c = A;
+			i = low;
+			k = low;
+			j = mid + 1;
 
+			while (i <= mid && j <= high)
+			{
+				if (A[i] < A[j])
+				{
+					A[k] = A[i];
+					k++;
+					i++;
+				}
+				else
+				{
+					A[k] = A[j];
+					k++;
+					j++;
+				}
+				break;
+			}
+			while (i <= mid)
+			{
+				c[k] = A[i];
+				k++;
+				i++;
+			}
+			while (j <= high)
+			{
+				c[k] = A[j];
+				k++;
+				j++;
+			}
+			for (i = low; i < k; i++)
+			{
+				A[i] = c[i];
+				cout << A[i] << endl;
+			}
+			cout << "=====" << endl;
 		}
+
 
 	}
 }
