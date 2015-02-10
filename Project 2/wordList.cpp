@@ -98,5 +98,6 @@ bool wordList::isSorted() const
 //Overloaded function to print wordList
 ostream &operator<<(ostream &ostream, const wordList &wordList)
 {
+	ostream << wordList.words;
 	return ostream;
 }

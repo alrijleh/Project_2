@@ -313,7 +313,7 @@ void search(const int sortMethod)
 	cout << "CPU time to find words: " << time << endl;
 
 	//display found words
-	cout << "Words found in grid:" << endl << endl;
+	cout << foundWords.size() << " words found in grid:" << endl << endl;
 	cout << foundWords << endl << endl;
 
 	time = clock() - baseTime;

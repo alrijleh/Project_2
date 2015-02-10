@@ -183,8 +183,8 @@ template <typename T> ostream &operator<<(ostream &ostream, const vector<T> &vec
 	int last = vector.size() - 1;
 	for (int index = 0; index < last; index++)
 	{
-		cout << vector[index] << ", ";
+		ostream << vector[index] << ", ";
 	}
-	cout << vector[last];
+	ostream << vector[last];
 	return ostream;
 }
