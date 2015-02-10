@@ -1,3 +1,11 @@
+/*
+Project 2a
+main.cpp
+Holds global functions getCandidate String and findMatches, calls search to solve crossword.
+
+Fouad Al-Rijleh, Rachel Rudolph
+*/
+
 #include "main.h"
 
 vector<string> getCandidateString(const Grid &grid)
@@ -314,7 +322,7 @@ void search(const int sortMethod)
 
 void main()
 {
-	try
+	/*try
 	{
 		search(QUICKSORT);
 	}
@@ -326,12 +334,14 @@ void main()
 	{
 		cout << "rangeError: " << ex.what() << endl;
 	}
+*/
 
-
-	//wordList words = wordList("wordlist.txt");
+	
+	wordList words = wordList("wordlist.txt");
 	//grid gridList("input15");
 
-	//words.mergeSort();
+	words.mergeSort();
+	cout << words;
 
 	/*vector<string> test = {"washed","kibitzes","hoopskirt","nature","chancellorship","abasing","unglamorized","attentiveness","excision","marimba","caustic","abaters",
 	"flooding","bidders","abatises","stingily"};*/

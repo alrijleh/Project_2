@@ -4,6 +4,7 @@ Contains template functions for searching and sorting vectors
 
 Fouad Al-Rijleh, Rachel Rudolph
 */
+
 #pragma once
 
 #include <vector>
@@ -58,7 +59,7 @@ namespace SearchSort
 	}
 	template<typename T> void mergeSort(vector<T> &A)
 	{
-		Internal::mergeSort(A, 0, A.size()-1);
+		Internal::mergeSort(A, 0, A.size() - 1);
 	}
 	template<typename T> void insertionSort(vector<T> &A)
 	{
@@ -131,48 +132,48 @@ namespace SearchSort
 		void merge(vector<T> &A, int low, int mid, int high)
 		{
 			int i, j, k;
-			vector<T> c = A;
+			//vector<T> L(mid - low + 1), R(high - mid);
+			vector<T> temp(A.size());
 			i = low;
 			k = low;
 			j = mid + 1;
-
 			while (i <= mid && j <= high)
 			{
 				if (A[i] < A[j])
 				{
-					A[k] = A[i];
+					//L[k] = A[i];          
+					temp[k] = A[i];
 					k++;
 					i++;
 				}
 				else
 				{
-					A[k] = A[j];
+					//R[k] = A[j];
+					temp[k] = A[j];
 					k++;
 					j++;
 				}
-				break;
 			}
-			while (i <= mid)
-			{
-				c[k] = A[i];
+			while (i <= mid){
+				//L[k] = A[i];
+				temp[k] = A[i];
 				k++;
 				i++;
 			}
-			while (j <= high)
-			{
-				c[k] = A[j];
+			while (j <= high){
+				//R[k] = A[j];
+				temp[k] = A[j];
 				k++;
 				j++;
 			}
-			for (i = low; i < k; i++)
+
+			for (k = low; k <= high; k++)
 			{
-				A[i] = c[i];
-				cout << A[i] << endl;
+				A[k] = temp[k];
+				
 			}
-			cout << "=====" << endl;
+			cout << A;
 		}
-
-
 	}
 }
 //Operator overloads

@@ -1,3 +1,10 @@
+/*
+grid.h
+Stores function that reads letters and grid size from file.
+
+Fouad Al-Rijleh, Rachel Rudolph
+*/
+
 #include "grid.h"
 
 
