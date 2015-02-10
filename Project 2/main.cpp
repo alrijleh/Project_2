@@ -264,11 +264,25 @@ void search(const int sortMethod)
 	clock_t time, baseTime;
 	vector<string> candidateWords, foundWords;
 
+<<<<<<< HEAD
+	//wordList words = wordList("wordlist.txt");
+	//grid gridList("input15");
+
+	//words.mergeSort();
+
+	/*vector<string> test = {"washed","kibitzes","hoopskirt","nature","chancellorship","abasing","unglamorized","attentiveness","excision","marimba","caustic","abaters",
+		"flooding","bidders","abatises","stingily"};*/
+	vector<int> test = {3, 45, 23, 56, 7, 9, 21, 6, 4, 8};
+	SearchSort::mergeSort(test);
+
+	//findMatches(words, gridList); //calls getCandidateString()
+=======
 	//get user input
 	cout << "Enter grid file: ";
 	cin >> filename;
 
 	baseTime = clock();
+>>>>>>> cd424bfddf5ab2a6fb22579f8534e9792722e4eb
 
 	//open grid file and crate grid
 	cout << "Opening input file..." << endl;
