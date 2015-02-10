@@ -1,7 +1,7 @@
 /*
 wordList.cpp
 Stores function to read words from file and store words into a vector. 
-Also, stores functions that call sorting algorithms and overloaded print function.
+Also, contains functions that call sorting algorithms and overloaded print function.
 
 Fouad Al-Rijleh, Rachel Rudolph
 */

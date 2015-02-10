@@ -7,10 +7,15 @@ Fouad Al-Rijleh, Rachel Rudolph
 
 #include "grid.h"
 
+//defulat constructor
+Grid::Grid()
+{
+}
 
-Grid::Grid(){}
-
-Grid::~Grid(){}
+//default destructor
+Grid::~Grid()
+{
+}
 
 Grid::Grid(string fileName)
 {
@@ -27,6 +32,7 @@ Grid::Grid(string fileName)
 	fin >> rows >> columns;
 	matrix.resize(rows, columns);
 
+	//construct matrix
 	while (!fin.eof())
 	{
 		for (int i = 0; i < rows; i++)
@@ -58,7 +64,7 @@ char Grid::getChar(int i, int j) const
 }
 
 //Operator overloads
-ostream &operator<<(ostream &ostream, Grid grid)
+ostream &operator<<(ostream &ostream, const Grid grid)
 {
 	for (int i = 0; i < grid.rows; i++)
 	{

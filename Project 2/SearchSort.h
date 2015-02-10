@@ -1,6 +1,7 @@
 /*
 SearchSort.h
 Contains template functions for searching and sorting vectors
+All funtions are found within the SearchSort namespace to prevent conflicts
 
 Fouad Al-Rijleh, Rachel Rudolph
 */
@@ -77,7 +78,7 @@ namespace SearchSort
 		}
 	}
 
-	//search and sorting fuctions - not for use outside of this file
+	//algorithm implementation - not for use outside of this file
 	namespace Internal
 	{
 		//quickSort - implementation

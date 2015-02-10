@@ -299,7 +299,7 @@ void search(const int sortMethod)
 	case QUICKSORT: dictionary.quickSort();
 		break;
 	default:
-		throw rangeError("Use provided enums in main.h to choose sorting method");
+		throw rangeError("sortMethod must be an int between 0 and 2");
 		break;
 	}
 	time = clock() - time;
@@ -325,7 +325,7 @@ void main()
 	try
 	{
 		int sortMethod;
-		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: " << endl;
+		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: ";
 		cin >> sortMethod;
 		search(sortMethod);
 	}
