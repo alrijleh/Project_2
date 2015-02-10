@@ -133,8 +133,6 @@ namespace SearchSort
 		void merge(vector<T> &A, vector<T> &temp, int low, int mid, int high)
 		{
 			int i, j, k;
-			//vector<T> L(mid - low + 1), R(high - mid);
-			/*vector<T> temp(high+1);*/
 			temp.resize(high + 1);
 			i = low;
 			k = low;
@@ -143,27 +141,23 @@ namespace SearchSort
 			{
 				if (A[i] < A[j])
 				{
-					//L[k] = A[i];          
 					temp[k] = A[i];
 					k++;
 					i++;
 				}
 				else
 				{
-					//R[k] = A[j];
 					temp[k] = A[j];
 					k++;
 					j++;
 				}
 			}
 			while (i <= mid){
-				//L[k] = A[i];
 				temp[k] = A[i];
 				k++;
 				i++;
 			}
 			while (j <= high){
-				//R[k] = A[j];
 				temp[k] = A[j];
 				k++;
 				j++;

@@ -273,17 +273,17 @@ void search(const int sortMethod)
 	vector<string> candidateWords, foundWords;
 
 	//get user input
-	cout << "Enter grid file: ";
+	cout << "Enter grid file name: ";
 	cin >> filename;
-
+	
 	baseTime = clock();
 
-	//open grid file and crate grid
+	//open grid file and create grid
 	cout << "Opening input file..." << endl;
 	Grid grid(filename);
 	if (grid.getColumns() <= 40) cout << grid;
 
-	//open word list and crate dictionary
+	//open word list and create dictionary
 	cout << "Opening dictionary..." << endl;
 	wordList dictionary("wordlist.txt");
 
@@ -324,7 +324,10 @@ void main()
 {
 	try
 	{
-		search(QUICKSORT);
+		int sortMethod;
+		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: " << endl;
+		cin >> sortMethod;
+		search(sortMethod);
 	}
 	catch (fileOpenError &ex)
 	{
@@ -336,22 +339,6 @@ void main()
 	}
 
 
-	/*
-	vector<string> test = {"washed","kibitzes","hoopskirt","nature","chancellorship","abasing","unglamorized","attentiveness","excision","marimba","caustic","abaters",
-	"flooding","bidders","abatises","stingily"};
-	//vector<int> test = {3, 45, 23, 56, 7, 9, 21, 6, 4, 8};
-	//SearchSort::mergeSort(test);
-	*/
-	/*
-	vector<int> vec(20);
-	for (int i = 0; i < vec.size(); i++)
-	{
-		vec[i] = rand() % 50;
-	}
-	cout << vec << endl;
-	SearchSort::mergeSort(vec);
-	cout << vec << endl;
-	cout << SearchSort::isSorted(vec);
-	*/
+	
 	system("pause");
 }
