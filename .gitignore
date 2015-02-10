@@ -56,3 +56,5 @@
 *.sdf
 *.lastcodeanalys*
 *.xml
+*.psess
+*.vsp
