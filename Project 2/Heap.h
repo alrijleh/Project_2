@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+using namespace std;
 template<typename T>
 class Heap
 {
@@ -13,7 +14,7 @@ public:
 	Heap();
 	Heap(vector<T> vector);
 	~Heap();
-
+	
 	void setVector(vector<T> newVector);
 	vector<T> getVector() const;
 

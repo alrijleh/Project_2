@@ -10,6 +10,7 @@ Fouad Al-Rijleh, Rachel Rudolph
 #include "wordList.h"
 #include "SearchSort.h"
 #include "grid.h"
+#include "Heap.h"
 
 #include <iostream>
 #include <time.h>
