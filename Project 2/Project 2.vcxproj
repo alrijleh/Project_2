@@ -14,12 +14,14 @@
     <ClInclude Include="d_except.h" />
     <ClInclude Include="d_matrix.h" />
     <ClInclude Include="grid.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="SearchSort.h" />
     <ClInclude Include="wordList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="wordList.cpp" />
   </ItemGroup>
