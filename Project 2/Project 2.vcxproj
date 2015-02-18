@@ -21,7 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="grid.cpp" />
-    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="wordList.cpp" />
   </ItemGroup>
