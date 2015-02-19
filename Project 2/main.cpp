@@ -338,6 +338,10 @@ void main()
 		cout << "rangeError: " << ex.what() << endl;
 	}
 
+	//vector<int> test;
+	//test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
+	//Heap::Heap(test);
+
 
 	
 	system("pause");

@@ -8,24 +8,24 @@ template<typename T>
 class Heap
 {
 private:
-	vector<T> vector;
+	vector<T> heapVector;
 
 public:
 	Heap();
-	Heap(vector<T> vector);
+	Heap(vector<T> newVector);
 	~Heap();
 	
 	void setVector(vector<T> newVector)
 	{
-		vector = newVector;
+		heapVector = newVector;
 	}
 	vector<T> getVector() const
 	{
-		vector = newVector;
+		return heapVector;
 	}
 	int getItem(int i) const
 	{
-		return vector[i + 1]
+		return heapVector[i + 1]
 	}
 
 	int left(int i) const
@@ -47,39 +47,39 @@ public:
 		int l = left(i);
 		int r = right(i);
 		int largest;
-		if (l <= vector.size() && vector[l] > vector[i])
+		if (l <= heapVector.size() && heapVector[l] > heapVector[i])
 		{
 			largest = l;
 		}
 		else largest = i;
-		if (r <= vector.size() && vector[r] > vector[largest])
+		if (r <= heapVector.size() && heapVector[r] > heapVector[largest])
 		{
 			largest = r;
 		}
 		if (largest != i)
 		{
-			swap(vector[i], vector[largest]);
-			maxHeapify(vector, largest);
+			swap(heapVector[i], heapVector[largest]);
+			maxHeapify(heapVector, largest);
 		}
 	}
 	void buildMaxHeap()
 	{
-		int heapSize = vector.size();
+		int heapSize = heapVector.size();
 		for (int index = heapSize / 2; i >= 1; i--)
 		{
-			maxHeapify(vector[i]);
+			maxHeapify(heapVector[i]);
 		}
 	}
 
 	void heapSort()
 	{
-		buildMaxHeap(vector);
-		int lastIndex = vector.size() - 1;
-		for (int index = vector.size(); i >= 2; i--)
+		buildMaxHeap(heapVector);
+		int lastIndex = heapVector.size() - 1;
+		for (int index = heapVector.size(); i >= 2; i--)
 		{
-			swap(vector[lastIndex], vector[index]);
-			vector.resize(vector.size() - 1);
-			maxHeapify(vector, lastIndex);
+			swap(heapVector[lastIndex], heapVector[index]);
+			heapVector.resize(heapVector.size() - 1);
+			maxHeapify(heapVector, lastIndex);
 		}
 	}
 };
