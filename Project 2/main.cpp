@@ -322,7 +322,7 @@ void search(const int sortMethod)
 
 void main()
 {
-	try
+	/*try
 	{
 		int sortMethod;
 		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: ";
@@ -336,13 +336,13 @@ void main()
 	catch (rangeError &ex)
 	{
 		cout << "rangeError: " << ex.what() << endl;
-	}
+	}*/
 
-	//vector<int> test;
-	//test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
-	//Heap::Heap(test);
+	vector<int> test;
+	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
+	Heap<int> heap(test);
+	heap.heapSort();
+	cout << heap << endl;
 
-
-	
 	system("pause");
 }
