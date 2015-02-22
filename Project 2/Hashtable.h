@@ -13,9 +13,21 @@ private:
 	vector<vector<T>> table; 
 
 public:
-	Hashtable();
-	Hashtable(vector<vector<T>> newtable);
-	~Hashtable();
+	Hashtable(){}
+	Hashtable(vector<T> baseVector)
+	{
+		Hashtable(baseVector, baseVector.size());
+	}
+	Hashtable(vector<T> baseVector, int numSlots)
+	{
+		vector<vector<T>> table(numSlots);
+		for (int index = 0; index < baseVector.size(); index++)
+		{
+			addItem(baseVector[index]);
+		}
+	}
+
+	~Hashtable(){}
 
 	void setTable(vector<vector<T>> newtable)
 	{
@@ -24,17 +36,32 @@ public:
 
 	vector<vector<T>> getTable() const
 	{
-		table = newtable;
+		return table;
+	}
+	
+	int getSlotCount() const
+	{
+		return table.size();
 	}
 
-	void addItem(T item) const
+	vector<int> getSlotSizes() const
+	{
+		vector<int> sizeVector(table.size())
+		for (int index = 0; index < table.size(); index++)
+		{
+			sizeVector[index] = table[index].size();
+		}
+		return sizeVector;
+	}
+
+	void addItem(T item)
 	{
 		int slot;
 		slot = hash(item);
-		table[slot].push_back(item)
+		table[slot].push_back(item);
 	}
 
-	void deleteItem(T item) const
+	void deleteItem(T item)
 	{
 		int slot, location;
 		slot = hash(item);
@@ -52,7 +79,7 @@ public:
 		else return true;
 	}
 
-	int hash(T item)
+	int hash(T item) const
 	{
 		std::hash<T> hash_struct;
 		return hash_struct(item) % table.size();
