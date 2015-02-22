@@ -57,6 +57,11 @@ public:
 
 	}
 
+	void initializeMinHeap()
+	{
+
+	}
+
 	void maxHeapify(int heapSize, int i)
 	{
 		int l = left(i);
@@ -77,6 +82,28 @@ public:
 			maxHeapify(heapSize, largest);
 		}
 	}
+	
+	void minHeapify(int heapSize, int i)
+	{
+		int l = left(i);
+		int r = right(i);
+		int smallest;
+		if (l < heapSize && heapVector[l] < heapVector[i])
+		{
+			smallest = l;
+		}
+		else smallest = i;
+		if (r < heapSize && heapVector[r] < heapVector[smallest])
+		{
+			smallest = r;
+		}
+		if (smallest != i)
+		{
+			swap(heapVector[i], heapVector[smallest]);
+			minHeapify(heapSize, smallest);
+		}
+	}
+
 	void buildMaxHeap()
 	{
 		int heapSize = heapVector.size();
@@ -86,7 +113,16 @@ public:
 		}
 	}
 
-	void heapSort()
+	void buildMinHeap()
+	{
+		int heapSize = heapVector.size();
+		for (int index = heapSize / 2; index >= 0; index--)
+		{
+			minHeapify(heapSize, index);
+		}
+	}
+
+	void heapSortMax()
 	{
 		buildMaxHeap();
 		int heapSize = heapVector.size();
@@ -95,6 +131,18 @@ public:
 			swap(heapVector[0], heapVector[lastIndex]);
 			heapSize--;
 			maxHeapify(heapSize, 0);
+		}
+	}
+
+	void heapSortMin()
+	{
+		buildMinHeap();
+		int heapSize = heapVector.size();
+		for (int lastIndex = heapVector.size() - 1; lastIndex >= 1; lastIndex--)
+		{
+			swap(heapVector[0], heapVector[lastIndex]);
+			heapSize--;
+			minHeapify(heapSize, 0);
 		}
 	}
 

@@ -341,8 +341,12 @@ void main()
 	vector<int> test;
 	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
 	Heap<int> heap(test);
-	heap.heapSort();
-	cout << heap << endl;
-
+	
+	heap.heapSortMin();
+	cout << "minHeap:" <<  heap << endl;
+	
+	heap.heapSortMax();
+	cout << "maxHeap:" << heap << endl;
+	
 	system("pause");
 }
