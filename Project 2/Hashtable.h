@@ -10,7 +10,7 @@ template<typename T>
 class Hashtable
 {
 private: 
-	vector<vector<T>> table; 
+	vector<vector<T>> table;
 
 public:
 	Hashtable(){}
@@ -32,15 +32,15 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 template<typename T>
-Hashtable::Hashtable(vector<T> baseVector)
+Hashtable<T>::Hashtable(vector<T> baseVector)
 {
 	Hashtable(baseVector, baseVector.size());
 }
 
 template<typename T>
-Hashtable::Hashtable(vector<T> baseVector, int numSlots)
+Hashtable<T>::Hashtable(vector<T> baseVector, int numSlots)
 {
-	vector<vector<T>> table(numSlots);
+	table.resize(numSlots);
 	for (int index = 0; index < baseVector.size(); index++)
 	{
 		addItem(baseVector[index]);
@@ -48,25 +48,25 @@ Hashtable::Hashtable(vector<T> baseVector, int numSlots)
 }
 
 template<typename T>
-void Hashtable::setTable(vector<vector<T>> newtable)
+void Hashtable<T>::setTable(vector<vector<T>> newtable)
 {
 	table = newTable;
 }
 
 template <typename T>
-vector<vector<T>> Hashtable::getTable() const
+vector<vector<T>> Hashtable<T>::getTable() const
 {
 	return table;
 }
 
 template <typename T>
-int Hashtable::getSlotCount() const
+int Hashtable<T>::getSlotCount() const
 {
 	return table.size();
 }
 
 template <typename T>
-vector<int> getSlotSizes() const
+vector<int> Hashtable<T>::getSlotSizes() const
 {
 	vector<int> Hashtable::sizeVector(table.size())
 		for (int index = 0; index < table.size(); index++)
@@ -77,7 +77,7 @@ vector<int> getSlotSizes() const
 }
 
 template <typename T>
-void Hashtable::addItem(T item)
+void Hashtable<T>::addItem(T item)
 {
 	int slot;
 	slot = hash(item);
@@ -85,7 +85,7 @@ void Hashtable::addItem(T item)
 }
 
 template <typename T>
-void Hashtable::deleteItem(T item)
+void Hashtable<T>::deleteItem(T item)
 {
 	int slot, location;
 	slot = hash(item);
@@ -95,7 +95,7 @@ void Hashtable::deleteItem(T item)
 }
 
 template <typename T>
-bool Hashtable::inList(T item) const
+bool Hashtable<T>::inList(T item) const
 {
 	int slot, location;
 	slot = hash(item);
@@ -105,7 +105,7 @@ bool Hashtable::inList(T item) const
 }
 
 template <typename T>
-int Hashtable::hash(T item) const
+int Hashtable<T>::hash(T item) const
 {
 	std::hash<T> hash_struct;
 	return hash_struct(item) % table.size();
