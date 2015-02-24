@@ -95,6 +95,16 @@ bool wordList::isSorted() const
 	return SearchSort::isSorted(words);
 }
 
+void wordList::createHashTable()
+{
+	hashtable.createTable(words);
+}
+
+bool wordList::hashSearch(const string &item)
+{
+	return hashtable.inList(item);
+}
+
 //Overloaded function to print wordList
 ostream &operator<<(ostream &ostream, const wordList &wordList)
 {

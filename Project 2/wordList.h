@@ -13,6 +13,7 @@ Fouad Al-Rijleh, Rachel Rudolph
 #include <string>
 #include <fstream>
 #include <vector>
+#include "Hashtable.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ class wordList
 {
 private:
 	vector<string> words;
+	Hashtable<string> hashtable;
 
 public:
 
@@ -36,6 +38,9 @@ public:
 	int binarySearch(const string &item) const;
 	int binarySearch(const string &item, int low) const;
 	int linearSearch(const string &item) const;
+
+	void createHashTable();
+	bool hashSearch(const string &item);
 
 	bool isSorted() const;
 

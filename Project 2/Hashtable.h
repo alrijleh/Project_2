@@ -1,4 +1,4 @@
-#pragma 
+#pragma once
 
 #include "SearchSort.h"
 #include "d_except.h"
@@ -24,13 +24,15 @@ public:
 	int getSlotCount() const;
 	vector<int> getSlotSizes() const;
 
+	void createTable(vector<T> baseVector);
+	void createTable(vector<T> baseVector, int numSlots);
 	void addItem(T item);
 	void deleteItem(T item);
 	bool inList(T item) const;
 	int hash(T item) const;
 };
 
-////////////////////////////////////////////////////////////////////////////////
+//Definitions
 template<typename T>
 Hashtable<T>::Hashtable(vector<T> baseVector)
 {
@@ -39,6 +41,22 @@ Hashtable<T>::Hashtable(vector<T> baseVector)
 
 template<typename T>
 Hashtable<T>::Hashtable(vector<T> baseVector, int numSlots)
+{
+	table.resize(numSlots);
+	for (int index = 0; index < baseVector.size(); index++)
+	{
+		addItem(baseVector[index]);
+	}
+}
+
+template<typename T>
+void Hashtable<T>::createTable(vector<T> baseVector)
+{
+	createTable(baseVector, baseVector.size());
+}
+
+template<typename T>
+void Hashtable<T>::createTable(vector<T> baseVector, int numSlots)
 {
 	table.resize(numSlots);
 	for (int index = 0; index < baseVector.size(); index++)
@@ -68,7 +86,7 @@ int Hashtable<T>::getSlotCount() const
 template <typename T>
 vector<int> Hashtable<T>::getSlotSizes() const
 {
-	vector<int> Hashtable::sizeVector(table.size())
+	vector<int> sizeVector( table.size() );
 		for (int index = 0; index < table.size(); index++)
 		{
 			sizeVector[index] = table[index].size();
