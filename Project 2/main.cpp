@@ -322,10 +322,16 @@ void search(const int sortMethod)
 
 void main()
 {
+	//Code from part 2a
+	
 	try
 	{
 		int sortMethod;
-		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: ";
+		cout << "Enter a digit:" << endl
+			<< "[0] for insertionSort" << endl
+			<< "[1] for mergeSort" << endl
+			<< "[2] for quickSort" << endl
+			<< "[4] for heapSort" << endl;
 		cin >> sortMethod;
 		search(sortMethod);
 	}
@@ -337,12 +343,16 @@ void main()
 	{
 		cout << "rangeError: " << ex.what() << endl;
 	}
-
-	//vector<int> test;
-	//test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
-	//Heap::Heap(test);
-
-
 	
+
+	//Code for part 2b
+
+	/*
+	vector<int> test;
+	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
+	Hashtable<int> hash;
+	hash.createTable(test);
+	cout << hash.getSlotCount();
+	*/
 	system("pause");
 }

@@ -11,6 +11,7 @@ Fouad Al-Rijleh, Rachel Rudolph
 #include "SearchSort.h"
 #include "grid.h"
 #include "Heap.h"
+#include "Hashtable.h"
 
 #include <iostream>
 #include <time.h>
