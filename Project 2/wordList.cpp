@@ -71,6 +71,14 @@ void wordList::mergeSort()
 	SearchSort::mergeSort(words);
 }
 
+//Calls heapSort from heap.h
+void wordList::heapSort()
+{
+	heap.setVector(words);
+	heap.heapSortMax();
+	words = heap.getVector();
+}
+
 //Calls binarySearch from SearchSort.h
 int wordList::binarySearch(const string &item) const
 {
@@ -93,6 +101,25 @@ int wordList::linearSearch(const string &item) const
 bool wordList::isSorted() const
 {
 	return SearchSort::isSorted(words);
+}
+
+//Creates a hash table from an inputted vector
+void wordList::createHashTable()
+{
+	hashtable.createTable(words);
+}
+
+//Checks whether or not a hash table has been initialized
+bool wordList::hasHash() const
+{
+	if (hashtable.getSlotCount() == 0) return false;
+	else return true;
+}
+
+//Checks whether or not an item is present in the hash table
+bool wordList::hashSearch(const string &item) const
+{
+	return hashtable.inList(item);
 }
 
 //Overloaded function to print wordList

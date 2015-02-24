@@ -253,28 +253,38 @@ vector<string> findMatches(const wordList &wordList, const Grid &grid)
 
 	//find matches and return index
 	cout << "Finding real words..." << endl;
-	for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
+	
+	if (wordList.hasHash() == true)
 	{
-		location = wordList.binarySearch(candidateStrings[candidateIndex], previous);
-		if (location != -1)
+		for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
 		{
-			matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
-			previous = location; //records the index of the last found word
+			if (wordList.hashSearch(candidateStrings[candidateIndex]) )
+			{
+				matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+			}
+		}
+	}
+
+	else
+	{
+		for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
+		{
+			location = wordList.binarySearch(candidateStrings[candidateIndex], previous);
+			if (location != -1)
+			{
+				matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+				previous = location; //records the index of the last found word
+			}
 		}
 	}
 
 	return matchList;
 }
 
-void search(const int sortMethod)
+void search(const int sortMethod, string filename)
 {
-	string filename;
 	clock_t time, baseTime;
 	vector<string> candidateWords, foundWords;
-
-	//get user input
-	cout << "Enter grid file name: ";
-	cin >> filename;
 	
 	baseTime = clock();
 
@@ -288,18 +298,32 @@ void search(const int sortMethod)
 	wordList dictionary("wordlist.txt");
 
 	//sort the dictionary
-	cout << "Sorting dictionary..." << endl;
+	cout << "Sorting dictionary ";
 	time = clock();
 	switch (sortMethod)
 	{
-	case INSERTIONSORT: dictionary.insertionSort();
+	case INSERTIONSORT:
+		cout << "with insertionSort..." << endl;
+		dictionary.insertionSort();
 		break;
-	case MERGESORT: dictionary.mergeSort();
+	case MERGESORT:
+		cout << "with mergeSort..." << endl;
+		dictionary.mergeSort();
 		break;
-	case QUICKSORT: dictionary.quickSort();
+	case QUICKSORT:
+		cout << "with quickSort..." << endl;
+		dictionary.quickSort(); 
+		break;
+	case HEAPSORT:
+		cout << "with heapSort..." << endl;
+		dictionary.heapSort();
+		break;
+	case HASH:
+		cout << "into a hash table..." << endl;
+		dictionary.createHashTable();
 		break;
 	default:
-		throw rangeError("sortMethod must be an int between 0 and 2");
+		throw rangeError("sortMethod must be an int between 0 and 4");
 		break;
 	}
 	time = clock() - time;
@@ -322,12 +346,23 @@ void search(const int sortMethod)
 
 void main()
 {
-	/*try
+	try
 	{
+		string filename;
+		//get user input
+		cout << "Enter grid file name: ";
+		cin >> filename;
+
 		int sortMethod;
-		cout << "Enter [0] for insertionSort, [1] for mergeSort or [2] for quickSort: ";
+		cout << "Enter a digit:" << endl
+			<< "[0] for insertionSort" << endl
+			<< "[1] for mergeSort" << endl
+			<< "[2] for quickSort" << endl
+			<< "[3] for heapSort" << endl
+			<< "[4] for hash table" << endl;
 		cin >> sortMethod;
-		search(sortMethod);
+
+		search(sortMethod, filename);
 	}
 	catch (fileOpenError &ex)
 	{
@@ -336,23 +371,7 @@ void main()
 	catch (rangeError &ex)
 	{
 		cout << "rangeError: " << ex.what() << endl;
-	}*/
-
-	/*vector<int> test;
-	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
-	Heap<int> heap(test);
-	
-	heap.heapSortMin();
-	cout << "minHeap:" <<  heap << endl;
-	
-	heap.heapSortMax();
-	cout << "maxHeap:" << heap << endl;*/
-	
-	vector<int> test;
-	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
-	Hashtable<int> hashTest(test);
-
-	hashTest.hash(4);
+	}
 
 	system("pause");
 }

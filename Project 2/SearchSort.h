@@ -18,6 +18,7 @@ namespace SearchSort
 	//vector functions
 	template<typename T> bool isSorted(const vector<T> &A)
 	{
+		if (A.size() < 2) return true;
 		for (int index = 0; index < A.size() - 1; index++)
 		{
 			if (A[index] > A[index + 1]) return false;
@@ -28,6 +29,7 @@ namespace SearchSort
 	//search functions
 	template<typename T> int linearSearch(const vector<T> &A, const T item)
 	{
+		if (A.size() == 0) return false;
 		for (int index = 0; index < A.size(); index++)
 		{
 			if (A[index] == item) return index;
@@ -40,6 +42,7 @@ namespace SearchSort
 	}
 	template<typename T> int binarySearch(const vector<T> &A, const T item, int low)
 	{
+		if (A.size() == 0) return false;
 		int high = A.size() - 1;
 
 		while (low <= high)

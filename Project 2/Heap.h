@@ -1,3 +1,9 @@
+/*
+Heap.h
+Contains functions for implimenting minHeap and maxHeap sorts
+
+Fouad Al-Rijleh, Rachel Rudolph
+*/
 #pragma once
 
 #include <iostream>
@@ -146,9 +152,10 @@ public:
 		}
 	}
 
-	friend ostream &operator<<(ostream &ostream, const Heap<int> &heap);
+	//friend ostream &operator<<(ostream &ostream, const Heap<int> &heap);
 };
 
+/*
 //Overloaded function to print heap
 ostream &operator<<(ostream &ostream, const Heap<int> &heap)
 {
@@ -159,3 +166,4 @@ ostream &operator<<(ostream &ostream, const Heap<int> &heap)
 	return ostream;
 }
 
+*/

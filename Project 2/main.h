@@ -18,4 +18,4 @@ Fouad Al-Rijleh, Rachel Rudolph
 
 using namespace std;
 
-enum Sort { INSERTIONSORT, MERGESORT, QUICKSORT}; //enum for which sorting algorithm to use
+enum Sort { INSERTIONSORT, MERGESORT, QUICKSORT, HEAPSORT, HASH}; //enum for which sorting algorithm to use

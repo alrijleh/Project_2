@@ -13,6 +13,8 @@ Fouad Al-Rijleh, Rachel Rudolph
 #include <string>
 #include <fstream>
 #include <vector>
+#include "Hashtable.h"
+#include "Heap.h"
 
 using namespace std;
 
@@ -20,6 +22,8 @@ class wordList
 {
 private:
 	vector<string> words;
+	Hashtable<string> hashtable;
+	Heap<string> heap;
 
 public:
 
@@ -33,9 +37,14 @@ public:
 	void insertionSort();
 	void quickSort();
 	void mergeSort();
+	void heapSort();
 	int binarySearch(const string &item) const;
 	int binarySearch(const string &item, int low) const;
 	int linearSearch(const string &item) const;
+
+	void createHashTable();
+	bool hasHash() const;
+	bool hashSearch(const string &item) const;
 
 	bool isSorted() const;
 
