@@ -109,6 +109,12 @@ void wordList::createHashTable()
 	hashtable.createTable(words);
 }
 
+//Creates a hash table from an inputted vector
+void wordList::createHashTable(int numSlots)
+{
+	hashtable.createTable(words, numSlots);
+}
+
 //Checks whether or not a hash table has been initialized
 bool wordList::hasHash() const
 {

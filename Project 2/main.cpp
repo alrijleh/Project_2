@@ -320,7 +320,7 @@ void search(const int sortMethod, string filename)
 		break;
 	case HASH:
 		cout << "into a hash table..." << endl;
-		dictionary.createHashTable();
+		dictionary.createHashTable(5000); //5000 slots in table
 		break;
 	default:
 		throw rangeError("sortMethod must be an int between 0 and 4");
