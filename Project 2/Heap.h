@@ -11,9 +11,20 @@ private:
 	vector<T> heapVector;
 
 public:
-	Heap();
-	Heap(vector<T> newVector);
-	~Heap();
+	Heap()
+	{
+
+	}
+	
+	Heap(vector<T> newVector)
+	{
+		setVector(newVector);
+	}
+
+	~Heap()
+	{
+
+	}
 	
 	void setVector(vector<T> newVector)
 	{
@@ -41,46 +52,110 @@ public:
 		return i / 2;
 	}
 
-	void initializeMaxHeap();
-	void maxHeapify(int i)
+	void initializeMaxHeap()
+	{
+
+	}
+
+	void initializeMinHeap()
+	{
+
+	}
+
+	void maxHeapify(int heapSize, int i)
 	{
 		int l = left(i);
 		int r = right(i);
 		int largest;
-		if (l <= heapVector.size() && heapVector[l] > heapVector[i])
+		if (l < heapSize && heapVector[l] > heapVector[i])
 		{
 			largest = l;
 		}
 		else largest = i;
-		if (r <= heapVector.size() && heapVector[r] > heapVector[largest])
+		if (r < heapSize && heapVector[r] > heapVector[largest])
 		{
 			largest = r;
 		}
 		if (largest != i)
 		{
 			swap(heapVector[i], heapVector[largest]);
-			maxHeapify(heapVector, largest);
+			maxHeapify(heapSize, largest);
 		}
 	}
-	void buildMaxHeap()
+	
+	void minHeapify(int heapSize, int i)
 	{
-		int heapSize = heapVector.size();
-		for (int index = heapSize / 2; i >= 1; i--)
+		int l = left(i);
+		int r = right(i);
+		int smallest;
+		if (l < heapSize && heapVector[l] < heapVector[i])
 		{
-			maxHeapify(heapVector[i]);
+			smallest = l;
+		}
+		else smallest = i;
+		if (r < heapSize && heapVector[r] < heapVector[smallest])
+		{
+			smallest = r;
+		}
+		if (smallest != i)
+		{
+			swap(heapVector[i], heapVector[smallest]);
+			minHeapify(heapSize, smallest);
 		}
 	}
 
-	void heapSort()
+	void buildMaxHeap()
 	{
-		buildMaxHeap(heapVector);
-		int lastIndex = heapVector.size() - 1;
-		for (int index = heapVector.size(); i >= 2; i--)
+		int heapSize = heapVector.size();
+		for (int index = heapSize / 2; index >= 0; index--)
 		{
-			swap(heapVector[lastIndex], heapVector[index]);
-			heapVector.resize(heapVector.size() - 1);
-			maxHeapify(heapVector, lastIndex);
+			maxHeapify(heapSize, index);
 		}
 	}
+
+	void buildMinHeap()
+	{
+		int heapSize = heapVector.size();
+		for (int index = heapSize / 2; index >= 0; index--)
+		{
+			minHeapify(heapSize, index);
+		}
+	}
+
+	void heapSortMax()
+	{
+		buildMaxHeap();
+		int heapSize = heapVector.size();
+		for (int lastIndex = heapVector.size() - 1; lastIndex >=1; lastIndex--)
+		{
+			swap(heapVector[0], heapVector[lastIndex]);
+			heapSize--;
+			maxHeapify(heapSize, 0);
+		}
+	}
+
+	void heapSortMin()
+	{
+		buildMinHeap();
+		int heapSize = heapVector.size();
+		for (int lastIndex = heapVector.size() - 1; lastIndex >= 1; lastIndex--)
+		{
+			swap(heapVector[0], heapVector[lastIndex]);
+			heapSize--;
+			minHeapify(heapSize, 0);
+		}
+	}
+
+	friend ostream &operator<<(ostream &ostream, const Heap<int> &heap);
 };
+
+//Overloaded function to print heap
+ostream &operator<<(ostream &ostream, const Heap<int> &heap)
+{
+	for (int i = 0; i < heap.getVector().size(); i++)
+	{
+		cout << heap.getVector()[i] << "  ";
+	}
+	return ostream;
+}
 

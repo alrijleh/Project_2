@@ -322,9 +322,7 @@ void search(const int sortMethod)
 
 void main()
 {
-	//Code from part 2a
-	
-	try
+	/*try
 	{
 		int sortMethod;
 		cout << "Enter a digit:" << endl
@@ -342,11 +340,18 @@ void main()
 	catch (rangeError &ex)
 	{
 		cout << "rangeError: " << ex.what() << endl;
-	}
+	}*/
+
+	vector<int> test;
+	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
+	Heap<int> heap(test);
 	
+	heap.heapSortMin();
+	cout << "minHeap:" <<  heap << endl;
 
-	//Code for part 2b
-
+	heap.heapSortMax();
+	cout << "maxHeap:" << heap << endl;
+	
 	/*
 	vector<int> test;
 	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
