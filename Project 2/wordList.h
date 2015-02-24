@@ -43,6 +43,7 @@ public:
 	int linearSearch(const string &item) const;
 
 	void createHashTable();
+	void createHashTable(int numSlots);
 	bool hasHash() const;
 	bool hashSearch(const string &item) const;
 
