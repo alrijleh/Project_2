@@ -1,3 +1,9 @@
+/*
+Heap.h
+Contains functions for implimenting minHeap and maxHeap sorts
+
+Fouad Al-Rijleh, Rachel Rudolph
+*/
 #pragma once
 
 #include <iostream>

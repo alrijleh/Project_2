@@ -1,3 +1,9 @@
+/*
+Hashtable.h
+Contains functions for creating and using a hashtable
+
+Fouad Al-Rijleh, Rachel Rudolph
+*/
 #pragma once
 
 #include "SearchSort.h"

@@ -322,7 +322,7 @@ void search(const int sortMethod)
 
 void main()
 {
-	/*try
+	try
 	{
 		int sortMethod;
 		cout << "Enter a digit:" << endl
@@ -340,7 +340,7 @@ void main()
 	catch (rangeError &ex)
 	{
 		cout << "rangeError: " << ex.what() << endl;
-	}*/
+	}
 
 	/*
 	vector<int> test;
