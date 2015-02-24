@@ -266,15 +266,10 @@ vector<string> findMatches(const wordList &wordList, const Grid &grid)
 	return matchList;
 }
 
-void search(const int sortMethod)
+void search(const int sortMethod, string filename)
 {
-	string filename;
 	clock_t time, baseTime;
 	vector<string> candidateWords, foundWords;
-
-	//get user input
-	cout << "Enter grid file name: ";
-	cin >> filename;
 	
 	baseTime = clock();
 
@@ -288,18 +283,28 @@ void search(const int sortMethod)
 	wordList dictionary("wordlist.txt");
 
 	//sort the dictionary
-	cout << "Sorting dictionary..." << endl;
+	cout << "Sorting dictionary ";
 	time = clock();
 	switch (sortMethod)
 	{
-	case INSERTIONSORT: dictionary.insertionSort();
+	case INSERTIONSORT:
+		cout << "with insertionSort..." << endl;
+		dictionary.insertionSort();
 		break;
-	case MERGESORT: dictionary.mergeSort();
+	case MERGESORT:
+		cout << "with mergeSort..." << endl;
+		dictionary.mergeSort();
 		break;
-	case QUICKSORT: dictionary.quickSort();
+	case QUICKSORT:
+		cout << "with quickSort..." << endl;
+		dictionary.quickSort(); 
+		break;
+	case HEAPSORT:
+		cout << "with heapSort..." << endl;
+		dictionary.heapSort();
 		break;
 	default:
-		throw rangeError("sortMethod must be an int between 0 and 2");
+		throw rangeError("sortMethod must be an int between 0 and 3");
 		break;
 	}
 	time = clock() - time;
@@ -324,14 +329,20 @@ void main()
 {
 	try
 	{
+		string filename;
+		//get user input
+		cout << "Enter grid file name: ";
+		cin >> filename;
+
 		int sortMethod;
 		cout << "Enter a digit:" << endl
 			<< "[0] for insertionSort" << endl
 			<< "[1] for mergeSort" << endl
 			<< "[2] for quickSort" << endl
-			<< "[4] for heapSort" << endl;
+			<< "[3] for heapSort" << endl;
 		cin >> sortMethod;
-		search(sortMethod);
+
+		search(sortMethod, filename);
 	}
 	catch (fileOpenError &ex)
 	{
@@ -343,23 +354,11 @@ void main()
 	}
 
 	/*
-	vector<int> test;
-	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
-	Heap<int> heap(test);
-	
-	heap.heapSortMin();
-	cout << "minHeap:" <<  heap << endl;
-
-	heap.heapSortMax();
-	cout << "maxHeap:" << heap << endl;
+	for (int mode = INSERTIONSORT; mode < QUICKSORT; mode++)
+	{
+		search(mode);
+	}
 	*/
 
-	/*
-	vector<int> test;
-	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
-	Hashtable<int> hash;
-	hash.createTable(test);
-	cout << hash.getSlotCount();
-	*/
 	system("pause");
 }

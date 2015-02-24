@@ -76,6 +76,7 @@ void wordList::heapSort()
 {
 	heap.setVector(words);
 	heap.heapSortMax();
+	words = heap.getVector();
 }
 
 //Calls binarySearch from SearchSort.h
