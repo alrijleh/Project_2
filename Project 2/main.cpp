@@ -341,7 +341,9 @@ void search(const int sortMethod, string filename)
 	cout << foundWords << endl << endl;
 
 	time = clock() - baseTime;
-	cout << "Total CPU time to complete entire operation: " << time << endl;
+	cout << "Total CPU time to complete entire operation: " << time << endl << endl << endl;
+
+	cout << "The CPU run time of  our heap sort was approximately 1400 while the run time of our hashtable was 4075 to sort the given wordlist. The general performance of heapSort has a runtime of O(nlongn) because it calls buildMaxHeap which is a function with runtime O(nlogn), a for loop with O(n) runtime, two lines with constant O(1) runtime and maxHeapify with a runtime of O(logn). Heap sort creates a local heap that has words added to it which is then sorted and copied to a vector. On the other hand, hashTable are direct address tables where each element has a key. In the worst case scenario, being all elements hash to the same location, the runtime is O(n) in addition to the amount of time it takes to complete the hash function.";
 }
 
 void main()
