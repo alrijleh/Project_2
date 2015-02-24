@@ -253,13 +253,28 @@ vector<string> findMatches(const wordList &wordList, const Grid &grid)
 
 	//find matches and return index
 	cout << "Finding real words..." << endl;
-	for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
+	
+	if (wordList.hasHash() == true)
 	{
-		location = wordList.binarySearch(candidateStrings[candidateIndex], previous);
-		if (location != -1)
+		for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
 		{
-			matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
-			previous = location; //records the index of the last found word
+			if (wordList.hashSearch(candidateStrings[candidateIndex]) )
+			{
+				matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+			}
+		}
+	}
+
+	else
+	{
+		for (int candidateIndex = 0; candidateIndex < candidateStrings.size(); candidateIndex++)
+		{
+			location = wordList.binarySearch(candidateStrings[candidateIndex], previous);
+			if (location != -1)
+			{
+				matchList.push_back(candidateStrings[candidateIndex]); //If word is present in dictionary, add to list of found words
+				previous = location; //records the index of the last found word
+			}
 		}
 	}
 
@@ -303,8 +318,12 @@ void search(const int sortMethod, string filename)
 		cout << "with heapSort..." << endl;
 		dictionary.heapSort();
 		break;
+	case HASH:
+		cout << "into a hash table..." << endl;
+		dictionary.createHashTable();
+		break;
 	default:
-		throw rangeError("sortMethod must be an int between 0 and 3");
+		throw rangeError("sortMethod must be an int between 0 and 4");
 		break;
 	}
 	time = clock() - time;
@@ -339,7 +358,8 @@ void main()
 			<< "[0] for insertionSort" << endl
 			<< "[1] for mergeSort" << endl
 			<< "[2] for quickSort" << endl
-			<< "[3] for heapSort" << endl;
+			<< "[3] for heapSort" << endl
+			<< "[4] for hash table" << endl;
 		cin >> sortMethod;
 
 		search(sortMethod, filename);
@@ -352,13 +372,6 @@ void main()
 	{
 		cout << "rangeError: " << ex.what() << endl;
 	}
-
-	/*
-	for (int mode = INSERTIONSORT; mode < QUICKSORT; mode++)
-	{
-		search(mode);
-	}
-	*/
 
 	system("pause");
 }

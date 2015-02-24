@@ -43,7 +43,8 @@ public:
 	int linearSearch(const string &item) const;
 
 	void createHashTable();
-	bool hashSearch(const string &item);
+	bool hasHash() const;
+	bool hashSearch(const string &item) const;
 
 	bool isSorted() const;
 

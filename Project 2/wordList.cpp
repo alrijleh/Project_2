@@ -103,12 +103,21 @@ bool wordList::isSorted() const
 	return SearchSort::isSorted(words);
 }
 
+//Creates a hash table from an inputted vector
 void wordList::createHashTable()
 {
 	hashtable.createTable(words);
 }
 
-bool wordList::hashSearch(const string &item)
+//Checks whether or not a hash table has been initialized
+bool wordList::hasHash() const
+{
+	if (hashtable.getSlotCount() == 0) return false;
+	else return true;
+}
+
+//Checks whether or not an item is present in the hash table
+bool wordList::hashSearch(const string &item) const
 {
 	return hashtable.inList(item);
 }
