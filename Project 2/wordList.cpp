@@ -71,6 +71,13 @@ void wordList::mergeSort()
 	SearchSort::mergeSort(words);
 }
 
+//Calls heapSort from heap.h
+void wordList::heapSort()
+{
+	heap.setVector(words);
+	heap.heapSortMax();
+}
+
 //Calls binarySearch from SearchSort.h
 int wordList::binarySearch(const string &item) const
 {

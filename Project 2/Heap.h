@@ -146,9 +146,10 @@ public:
 		}
 	}
 
-	friend ostream &operator<<(ostream &ostream, const Heap<int> &heap);
+	//friend ostream &operator<<(ostream &ostream, const Heap<int> &heap);
 };
 
+/*
 //Overloaded function to print heap
 ostream &operator<<(ostream &ostream, const Heap<int> &heap)
 {
@@ -159,3 +160,4 @@ ostream &operator<<(ostream &ostream, const Heap<int> &heap)
 	return ostream;
 }
 
+*/

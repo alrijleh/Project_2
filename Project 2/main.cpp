@@ -342,6 +342,7 @@ void main()
 		cout << "rangeError: " << ex.what() << endl;
 	}*/
 
+	/*
 	vector<int> test;
 	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45 };
 	Heap<int> heap(test);
@@ -351,7 +352,8 @@ void main()
 
 	heap.heapSortMax();
 	cout << "maxHeap:" << heap << endl;
-	
+	*/
+
 	/*
 	vector<int> test;
 	test = { 23, 4, 6, 56, 7, 9, 0, 3, 45, 46, 9 };
